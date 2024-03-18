@@ -71,12 +71,17 @@ public class TaskIO {
     }
     public static void writeBinary(TaskList tasks, File file)throws IOException{
         FileOutputStream fos = null;
+
         try {
             fos = new FileOutputStream(file);
             write(tasks,fos);
         }
         catch (IOException e){
             log.error("IO exception reading or writing file");
+        }
+        //am adaugat catch
+        catch (NullPointerException nl){
+            log.error("Null file");
         }
         finally {
             fos.close();
