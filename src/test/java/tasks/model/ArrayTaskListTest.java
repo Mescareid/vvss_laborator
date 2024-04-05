@@ -47,7 +47,7 @@ class ArrayTaskListTest {
         assert testTask.getTitle() == "Homework";
         assert testTask.getRepeatInterval() == 1;
         assert testTask.isActive();
-        //assert testTask.getEndTime() == ;
+        assert testTask.equals(task);
         assert taskList.size() == 1;
     }
 
