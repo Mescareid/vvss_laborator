@@ -59,12 +59,9 @@ class ArrayTaskListTest {
 
         taskList.add(task);
 
-        Task testTask = taskList.getTask(0);
-
-        assert testTask.getTitle() == "";
-        assert testTask.getRepeatInterval() == 1;
-        assert testTask.isActive();
-        //assert testTask.getEndTime() == ;
+        assert task.getTitle() == "";
+        assert task.getRepeatInterval() == 1;
+        assert task.isActive();
         assert taskList.size() == 1;
     }
 
@@ -78,38 +75,12 @@ class ArrayTaskListTest {
         } catch (ParseException ex){
             assert true;
         }
+
+        assert taskList.size() == 1;
     }
 
     @Test
-    void TC05_EC() throws ParseException {
-        task.setTitle("Homework");
-        try{
-            task.setTime(Task.getDateFormat().parse("2024-03-12 10:10"), Task.getDateFormat().parse("201q"), 1);
-            task.setActive(true);
-            assert false;
-        } catch (ParseException ex){
-            assert true;
-        }
-    }
-
-    @Test
-    void TC06_EC() throws ParseException {
-        task.setTitle("Homework");
-        try{
-            task.setTime(Task.getDateFormat().parse("2024-03-12 10:10"), Task.getDateFormat().parse("2024-03-13 10:10"), 1);
-            assert true;
-        } catch (ParseException ex){
-            assert false;
-        }
-        taskList.add(task);
-
-        Task testTask = taskList.getTask(0);
-
-        assert testTask.isActive() ==  task.isActive();
-    }
-
-    @Test
-    void TC07_EC() throws ParseException {
+    void TC07_EC() {
         task.setTitle("Homework");
         try{
             task.setTime(Task.getDateFormat().parse("2024-03-12 10:10"), Task.getDateFormat().parse("2024-03-13 10:10"), 28);
@@ -121,8 +92,52 @@ class ArrayTaskListTest {
 
         taskList.add(task);
 
+        assert taskList.size() == 1;
+    }
+
+    @Test
+    void TC01_BV() throws ParseException {
+        task.setTitle("H");
+        task.setTime(Task.getDateFormat().parse("2024-03-12 10:10"), Task.getDateFormat().parse("2024-03-13 10:10"), 1);
+        task.setActive(true);
+
+        taskList.add(task);
+
         Task testTask = taskList.getTask(0);
 
-        assert testTask.isActive() ==  task.isActive();
+        assert testTask.getRepeatInterval() == 1;
+        assert testTask.isActive();
+        assert testTask.equals(task);
+        assert taskList.size() == 1;
     }
+
+    @Test
+    void TC02_BV() throws ParseException {
+        task.setTitle("");
+        task.setTime(Task.getDateFormat().parse("2024-03-12 10:10"), Task.getDateFormat().parse("2024-03-13 10:10"), 1);
+        task.setActive(true);
+
+        taskList.add(task);
+        assert taskList.size() == 1;
+    }
+
+    @Test
+    void TC03_BV() throws ParseException {
+        task.setTitle("Homework");
+        task.setTime(Task.getDateFormat().parse("2025-01-01 00:00"), Task.getDateFormat().parse("2026-02-02 10:10"), 1);
+        task.setActive(false);
+
+        taskList.add(task);
+        assert taskList.size() == 1;
+    }
+
+    @Test
+    void TC04_BV() throws ParseException {
+        task.setTitle("Homework");
+        task.setTime(Task.getDateFormat().parse("2024-03-12 10:10"), Task.getDateFormat().parse("2031-01-01 00:00"), 1);
+        task.setActive(false);
+        taskList.add(task);
+        assert taskList.size() == 1;
+    }
+
 }

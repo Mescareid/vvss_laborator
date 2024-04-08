@@ -52,13 +52,31 @@ public class ArrayTaskList extends TaskList{
 
     @Override
     public void add(Task task){
-        if (task.equals(null)) throw new NullPointerException("Task shouldn't be null");
         if (numberOfTasks == currentCapacity-1){
             currentCapacity = currentCapacity * 2;
             Task[] withAddedTask = new Task[currentCapacity];
             System.arraycopy(tasks,0,withAddedTask,0,tasks.length);
             this.tasks = withAddedTask;
         }
+
+        // validation
+        if (task.getTitle().length() < 1){
+            log.error("empty descriere");
+            return;
+        }
+        if (task.getStartTime().getYear() + 1900 >= 2025){
+            log.error("dataInceput invalid");
+            return;
+        }
+        if (task.getEndTime().getYear() + 1900 > 2030){
+            log.error("dataFinal invalid");
+            return;
+        }
+        if(task.getRepeatInterval() > 24){
+            log.error("interval invalid");
+            return;
+        }
+
         this.tasks[numberOfTasks] = task;
         this.numberOfTasks++;
     }
