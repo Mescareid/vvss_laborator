@@ -82,6 +82,9 @@ public class ArrayTaskList extends TaskList{
     }
     @Override
     public boolean remove(Task task){
+        if (task == null){
+            return false;
+        }
         int indexOfTaskToDelete = -1;
         for(int i = 0; i < tasks.length; i++){
             if (task.equals(tasks[i])){

@@ -140,4 +140,57 @@ class ArrayTaskListTest {
         assert taskList.size() == 0;
     }
 
+    @Test
+    public void testRemove_TaskNotFound_ReturnsFalse() {
+        // arrange
+        taskList.add(new Task("task42", start));
+        taskList.add(new Task("task55", start));
+        Task task = new Task("task1", start);
+
+        // act
+        boolean result = taskList.remove(task);
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testRemove_TaskNull_ReturnsFalse() {
+        // arrange
+        taskList.add(new Task("task42", start));
+        Task task = null;
+
+        // act
+        boolean result = taskList.remove(task);
+
+        // assert
+        assertFalse(result);
+    }
+
+    @Test
+    public void testRemove_TaskFound_ReturnsTrue() {
+        // arrange
+        taskList.add(new Task("task1", start));
+        taskList.add(new Task("task2", start));
+        Task task = new Task("task1", start);
+
+        // act
+        boolean result = taskList.remove(task);
+
+        // assert
+        assertTrue(result);
+    }
+
+    @Test
+    public void testRemove_EmptyList_ReturnsFalse() {
+        // arrange
+        Task task = new Task("task1", start);
+
+        // act
+        boolean result = taskList.remove(task);
+
+        // assert
+        assertFalse(result);
+    }
+
 }
