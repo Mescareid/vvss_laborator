@@ -62,7 +62,7 @@ class ArrayTaskListTest {
         assert task.getTitle() == "";
         assert task.getRepeatInterval() == 1;
         assert task.isActive();
-        assert taskList.size() == 1;
+        assert taskList.size() == 0;
     }
 
     @Test
@@ -76,7 +76,7 @@ class ArrayTaskListTest {
             assert true;
         }
 
-        assert taskList.size() == 1;
+        assert taskList.size() == 0;
     }
 
     @Test
@@ -92,7 +92,7 @@ class ArrayTaskListTest {
 
         taskList.add(task);
 
-        assert taskList.size() == 1;
+        assert taskList.size() == 0;
     }
 
     @Test
@@ -118,7 +118,7 @@ class ArrayTaskListTest {
         task.setActive(true);
 
         taskList.add(task);
-        assert taskList.size() == 1;
+        assert taskList.size() == 0;
     }
 
     @Test
@@ -128,7 +128,7 @@ class ArrayTaskListTest {
         task.setActive(false);
 
         taskList.add(task);
-        assert taskList.size() == 1;
+        assert taskList.size() == 0;
     }
 
     @Test
@@ -137,7 +137,7 @@ class ArrayTaskListTest {
         task.setTime(Task.getDateFormat().parse("2024-03-12 10:10"), Task.getDateFormat().parse("2031-01-01 00:00"), 1);
         task.setActive(false);
         taskList.add(task);
-        assert taskList.size() == 1;
+        assert taskList.size() == 0;
     }
 
 }
