@@ -141,11 +141,11 @@ class ArrayTaskListTest {
     }
 
     @Test
-    public void testRemove_TaskNotFound_ReturnsFalse() {
+    public void F02_TC01() {
         // arrange
-        taskList.add(new Task("task42", start));
-        taskList.add(new Task("task55", start));
-        Task task = new Task("task1", start);
+        taskList.add(new Task("task1", start));
+        taskList.add(new Task("task2", start));
+        Task task = new Task("task", start);
 
         // act
         boolean result = taskList.remove(task);
@@ -155,9 +155,9 @@ class ArrayTaskListTest {
     }
 
     @Test
-    public void testRemove_TaskNull_ReturnsFalse() {
+    public void F02_TC02() {
         // arrange
-        taskList.add(new Task("task42", start));
+        taskList.add(new Task("task", start));
         Task task = null;
 
         // act
@@ -168,7 +168,7 @@ class ArrayTaskListTest {
     }
 
     @Test
-    public void testRemove_TaskFound_ReturnsTrue() {
+    public void F02_TC03() {
         // arrange
         taskList.add(new Task("task1", start));
         taskList.add(new Task("task2", start));
@@ -182,9 +182,9 @@ class ArrayTaskListTest {
     }
 
     @Test
-    public void testRemove_EmptyList_ReturnsFalse() {
+    public void F02_TC04() {
         // arrange
-        Task task = new Task("task1", start);
+        Task task = new Task("task", start);
 
         // act
         boolean result = taskList.remove(task);

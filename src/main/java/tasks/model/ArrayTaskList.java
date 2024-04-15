@@ -82,24 +82,24 @@ public class ArrayTaskList extends TaskList{
     }
     @Override
     public boolean remove(Task task){
-        if (task == null){
-            return false;
+        if (task == null){                          //  1
+            return false;                           //  2
         }
-        int indexOfTaskToDelete = -1;
-        for(int i = 0; i < tasks.length; i++){
-            if (task.equals(tasks[i])){
-                indexOfTaskToDelete = i;
+        int indexOfTaskToDelete = -1;               //  3
+        for(int i = 0; i < tasks.length; i++){      //  4
+            if (task.equals(tasks[i])){             //  5
+                indexOfTaskToDelete = i;            //  6
                 break;
             }
         }
-        if (indexOfTaskToDelete >= 0){
+        if (indexOfTaskToDelete >= 0){              //  7
             this.numberOfTasks--;
             System.arraycopy(tasks, indexOfTaskToDelete+1,tasks,indexOfTaskToDelete,
                     numberOfTasks-indexOfTaskToDelete+1);
-            return true;
+            return true;                            //  8
         }
-        return false;
-    }
+        return false;                               //  9
+    }                                               //  10
     @Override
     public int size(){
         return this.numberOfTasks;
