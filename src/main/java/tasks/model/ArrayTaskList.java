@@ -59,23 +59,27 @@ public class ArrayTaskList extends TaskList{
             this.tasks = withAddedTask;
         }
 
-        // validation
-        if (task.getTitle().length() < 1){
-            log.error("empty descriere");
-            return;
-        }
-        if (task.getStartTime().getYear() + 1900 >= 2025){
-            log.error("dataInceput invalid");
-            return;
-        }
-        if (task.getEndTime().getYear() + 1900 > 2030){
-            log.error("dataFinal invalid");
-            return;
-        }
-        if(task.getRepeatInterval() > 24){
-            log.error("interval invalid");
-            return;
-        }
+        // validation.
+//        if (task.getTitle() == null){
+//            log.error("null descriere");
+//            return;
+//        }
+//        if (task.getTitle().length() < 1){
+//            log.error("empty descriere");
+//            return;
+//        }
+//        if (task.getStartTime().getYear() + 1900 >= 2025){
+//            log.error("dataInceput invalid");
+//            return;
+//        }
+//        if (task.getEndTime().getYear() + 1900 > 2030){
+//            log.error("dataFinal invalid");
+//            return;
+//        }
+//        if(task.getRepeatInterval() > 24){
+//            log.error("interval invalid");
+//            return;
+//        }
 
         this.tasks[numberOfTasks] = task;
         this.numberOfTasks++;
@@ -108,7 +112,7 @@ public class ArrayTaskList extends TaskList{
     public Task getTask(int index){
         if (index < 0 || index > size()-1) {
             log.error("not existing index");
-            throw new IndexOutOfBoundsException("Index not found");
+            return null;
         }
 
 
