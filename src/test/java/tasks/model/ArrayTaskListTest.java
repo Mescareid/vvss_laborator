@@ -35,9 +35,13 @@ class ArrayTaskListTest {
     }
 
     @Test
-    void TC01_EC() throws ParseException {
+    void TC01_EC() {
         task.setTitle("Homework");
-        task.setTime(Task.getDateFormat().parse("2024-03-12 10:10"), Task.getDateFormat().parse("2024-03-13 10:10"), 1);
+        try {
+            task.setTime(Task.getDateFormat().parse("2024-03-12 10:10"), Task.getDateFormat().parse("2024-03-13 10:10"), 1);
+        } catch (ParseException e) {
+            throw new RuntimeException(e);
+        }
         task.setActive(true);
 
         taskList.add(task);
